@@ -1,0 +1,84 @@
+@font-face{
+    font-family: 'cafe';
+    src:url("font/Cafe.ttf") format("truetype");
+}
+
+.cafe-text{
+    font-family: "cafe";
+}
+
+
+HTML {
+    height: 100%;
+}
+
+BODY {
+    min-height: 100%;
+    background-image: url("/img/login_background.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.jumbotron{
+    width: 50%;
+    min-width: 50%;
+    background-color: rgba(0,0,0,.5) !important;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn-outline-warning{
+    width: 100%;
+}
+
+
+
+.social_icon span{
+    font-size: 60px;
+    margin-left: 10px;
+    color: #FFC312;
+    }
+    
+    .social_icon span:hover{
+    color: white;
+    cursor: pointer;
+    }
+    
+    .card-header h3{
+    color: white;
+    }
+    
+    .social_icon{
+    position: absolute;
+    right: 20px;
+    top: -45px;
+    }
+    
+    .input-group-prepend span{
+    width: 50px;
+    background-color: #FFC312;
+    color: black;
+    border:0 !important;
+    }
+    
+    input:focus{
+    outline: 0 0 0 0  !important;
+    box-shadow: 0 0 0 0 !important;
+    
+    }
+    
+    .remember{
+    color: white;
+    }
+    
+    .remember input
+    {
+    width: 20px;
+    height: 20px;
+    margin-left: 15px;
+    margin-right: 5px;
+    }
+    
+

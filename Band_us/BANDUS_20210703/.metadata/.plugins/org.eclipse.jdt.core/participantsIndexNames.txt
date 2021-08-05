@@ -1,0 +1,3 @@
+INDEX VERSION 1.130
+C:\Users\kosmo_\Desktop\20210624_band us\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3325645271.index
+\Band us\src

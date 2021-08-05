@@ -1,0 +1,7 @@
+INDEX VERSION 1.4+C:\Users\kosmo_\Desktop\BANDUS_20210703\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+4092601437.index
+1904813779.index
+1212750555.index
+144815396.index
+820338568.index
+1188611042.index

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Band us/WebContent/fileupload_pro.jsp&apos; to &apos;fileupload_Pro.jsp&apos;" description="Rename resource &apos;fileupload_pro.jsp&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="WebContent/fileupload_pro.jsp" name="fileupload_Pro.jsp" stamp="1624498717059" updateReferences="true"/>
+</session>
