@@ -1,0 +1,17 @@
+ public void movePage(String address,Button btn) {
+        
+        Stage stage = (Stage)btn.getScene().getWindow();
+ 
+        try {
+           
+            Parent second = FXMLLoader.load(getClass().getResource(address));
+ 
+            Scene sc = new Scene(second);
+            stage.setScene(sc);
+            stage.show();
+ 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+ 
+    }

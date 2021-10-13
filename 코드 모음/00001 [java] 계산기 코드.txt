@@ -1,0 +1,78 @@
+private int first;
+private int second;
+private String operator;
+	
+	
+	
+	public int getFirst() {
+		return first;
+	}
+	public void setFirst(int first) {
+		this.first = first;
+	}
+	public int getSecond() {
+		return second;
+	}
+	public void setSecond(int second) {
+		this.second = second;
+	}
+	public String getOperator() {
+		return operator;
+	}
+	public void setOperator(String operator) {
+		this.operator = operator;
+	}
+	
+	
+
+	
+	
+	
+	
+	
+	public Calculator() {
+		
+	}
+	
+	public int add() {
+		int result = first + second;
+		return result;
+	}
+	public int sub() {
+		int result = first - second;
+		return result;
+	}
+	
+	public int mul() {
+		int result = first*second;
+		return result;
+	}
+	public double div() {
+		double result = (double)first / (double)second;
+		return result;
+	}
+	
+	public void calculate() {
+		switch(this.operator) {
+		case "+": System.out.println(this.first + " + " + this.second + " = " +  add());
+		break;
+		
+		case "-": System.out.println(this.first + " - " + this.second + " = " +  sub());
+		break;
+		
+		case "*": System.out.println(this.first + " * " + this.second + " = " +  mul());
+		break;
+		
+		case "/": {
+			if(this.second == 0) {
+				System.out.println("0으로 나눌 수 없습니다.");
+				break;
+			}
+			System.out.println(this.first + " / " + this.second + " = " +  div());
+		}
+		break;
+		
+		default:System.out.println("연산자가 올바르지 않습니다.");
+		break;
+		} 
+	}
