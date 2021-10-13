@@ -1,0 +1,332 @@
+----------------------------------------------------------------------------
+시작 - Run SQL Command Line 
+----------------------------------------------------------------------------
+1. 가장 윗 계정에 접속한다. 비밀번호 입력.
+	SQL> conn system/1234   
+	-> Connected.
+
+2. hr 계정에 대해서 잠금을 풀어준다
+	SQL> alter user hr account unlock; 
+	-> User altered.
+
+3. hr 계정에 대하여 비밀번호를 걸어준다.
+	SQL> alter user hr identified by 1234;  
+	-> User altered.
+
+4. hr 계정에 접속한다. 비밀번호 입력.
+	SQL> conn hr/1234   
+	-> Connected.
+
+5. 전체 테이블 확인
+	SQL> select * from tab;
+
+6. 창에서 사용하는 가로의 길이조절, 한눈에 보기 더 편해졌다.
+	SQL> set linesize 200;
+
+7. 페이지 길이 조절 (컬럼 이름과 구분선 등도 길이에 포함된다.)
+	SQL> set pagesize 길이;
+
+8. 특정 컬럼의 길이 조절. 
+	SQL> column 컬럼이름 format a길이;         (알파벳)
+	SQL> column 컬럼이름 format 9,999,999;    (숫자1) (보이지 않는 길이, 내 숫자만 나온다.)
+	SQL> column 컬럼이름 format 0,000,000;    (숫자2) (길이를 전부 채워서, 비어있는 곳은 0 출력)
+	SQL> column 컬럼이름 format $9,999,999;   (숫자3) (앞에 문자 삽입)
+	데이터가 # 으로 나온 이유 : 자료형이 맞지 않아서.
+
+9. 직전 명령어 보여주기 (소문자L) (사실 방향키로도 가능)
+	SQL> l
+
+10. 직전 명령어 실행 (두가지 방법)
+	SQL> r
+	SQL> /
+
+11. 명령문 저장
+	SQL> save sample;
+	-> Created file sample.sql
+
+12. 저장했던 것을 메모장 형식으로 띄우기 (ed : edit)
+	SQL> ed sample; 
+
+13. spool 시작
+	SQL> spool test
+
+14. spool 끝
+	SQL> spool off
+
+15. BIN 접속
+	SQL> host
+
+16. BIN 보기
+	C:\oraclexe\app\oracle\product\11.2.0\server\BIN>dir 
+
+17. BIN 넓게 보기
+	C:\oraclexe\app\oracle\product\11.2.0\server\BIN>dir/w 
+
+18. BIN 에서 나가서 SQL로 돌아가기
+	C:\oraclexe\app\oracle\product\11.2.0\server\BIN>exit
+
+19. spool로 갈무리 한 것 메모장 형식으로 띄우기
+	SQL> ed test.lst  
+
+----------------------------------------------------------------------------
+시작 - SQL Developer실행
+----------------------------------------------------------------------------
+1. 새로운 데이터베이스에 접속하기
+	접속
+	초록+
+	새로 만들기/데이터베이스 접속 선택
+	Name : (맘대로 지정) sample  myDB  systemDB
+	사용자이름 : hr  system
+	비밀번호 : 1234  1234
+	테스트
+	상태 : 성공
+	접속
+
+2. 환경설정
+	도구 - 환경설정 - 코드 편집기 - 글꼴 - 나눔고딕코딩
+	도구 - 환경설정 - 코드 편집기 - 행여백 - 행 번호 표시
+
+3. 외부 테이블 불러오기
+	@C:\폴더이름\파일이름.sql
+	@C:\Temp\EMP_EXAMPLE.sql
+
+4. 기본 조작
+	주석  :   --   /* */
+	실행  :  ctrl + Enter
+	   *   :  전체 컬럼
+	  '  '  : 문자열을 감싼다
+	  "  " : 컬럼별칭을 감싼다
+	테이블 별칭       :  [테이블별칭.컬럼이름] 형식으로도 데이터를 불러올 수 있다.
+	dual 테이블       : select 콘솔에_출력하기_원하는_것 from dual;
+	대소문자 구별 X : 명령어, 테이블이름, 컬럼이름
+	대소문자 구별 O : 데이터
+	
+
+5. 특정 테이블의 구조 확인. (null조건의 유무, 데이터 타입과 길이) (두가지 방법)
+	desc 테이블이름;    
+	describe 테이블이름;
+
+6. 제약조건 확인
+6-1. 전체 제약조건 확인
+	select * from user_constraints;
+6-2. 특정 조건에 해당하는 제약조건 확인
+	where table_name in ('테이블이름' , '테이블이름');
+	where constraint_name = '제약조건이름' or constraint_name = '제약조건이름'; 
+
+7. 테이블 생성
+	create table 테이블이름(컬럼이름1 자료형(길이), 컬럼이름2 자료형(길이));  
+
+8. 테이블 삭제
+	drop table 테이블이름;
+
+9. 컬럼 추가
+	alter table 테이블이름
+	add 컬럼이름 자료형(길이);
+
+10. 컬럼 삭제
+	alter table 테이블이름
+	drop column 컬럼이름;
+
+11. 테이블에 [행 단위로] 데이터 삽입
+	insert into 테이블이름 values(첫_컬럼에_넣을_데이터, 둘째_컬럼에_넣을_데이터, ,,,,,);   
+	insert into 테이블이름(특정컬럼지정1, 특정컬럼지정2) values(특정컬럼1에_넣을_데이터, 특정컬럼2에_넣을_데이터,,,);   
+
+12. 특정 컬럼의 데이터 업데이트
+12-1. 특정 컬럼의 [모든] 데이터를 동일한 값으로 업데이트
+	update 테이블이름
+	set 컬럼이름 = 업데이트_할_데이터;
+12-2. 특정 컬럼의 [특정행]의 데이터를 업데이트
+	update 테이블이름 
+	set 컬럼이름 = 업데이트_할_데이터
+	where 컬럼이름 = 특정_행에_해당하는_데이터;
+
+13. 특정 행의 데이터 삭제
+	delete from 테이블이름
+	where 컬럼이름 = 데이터; 
+
+14. 휴지통
+14-1. 휴지통 조회
+	select * from recyclebin; 
+14-2. 휴지통 비우기
+	purge recyclebin;
+
+
+15. select문의 형식
+	select 컬럼이름         [콘손창에서 보기 원하는 것]
+	from 테이블이름        [select에서 가져올 컬럼들이 있는 테이블] [혹은 dual]
+	where 특정 조건
+	--------------------
+	group by 컬럼이름     [특정컬럼을 기준으로 그룹핑] [select에서 만든 컬럼을 사용해도 된다.]
+	having 특정 조건        [그룹핑한 상태에서 특정조건]
+	--------------------
+	order by 컬럼이름     [특정컬럼기준. 오름, 내림차순정렬]
+	;                           [마지막에 항상 세미콜론을 찍어준다.]
+
+16. 콘솔에 데이터 불러와서 보기
+16-1. 전체 테이블 확인
+	select * 
+	from tab;
+16-2. 특정 테이블의 데이터 전부 확인
+	select * 
+	from 테이블이름;
+16-3. 특정 조건에 해당하는 데이터 불러오기
+	select 콘솔에_출력하기_원하는_컬럼이름
+	from 테이블이름
+	where 컬럼이름 = 조건; 
+
+17. 컬럼별칭 (4가지 방법)
+	select 컬럼이름 별칭
+	select 컬럼이름 "별칭"
+	select 컬럼이름 as 별칭  
+	select 컬럼이름 as "별칭"
+	(별칭에 띄어쓰기가 들어가는 경우, 
+	대소문자 구분이 필요한 경우, 
+	문자와 숫자를 함께 쓰고 싶은 경우 등 -> "쌍따옴표" 필요)
+
+18. 중복제거 (distinct)
+	select distinct 컬럼이름
+	from 테이블이름;
+
+19. null에 대하여
+19-1. nvl함수 : null값을 특정 데이터로 치환
+	nvl (특정컬럼이름, null값을_치환할_데이터)
+19-2. is null : null인 것만 출력
+	select 컬럼이름
+	from 테이블이름
+	where 컬럼이름 is null;
+19-3. is not null : null이 아닌것만 출력
+	select 컬럼이름
+	from 테이블이름
+	where 컬럼이름 is not null;
+
+
+
+20. 데이터 정렬 (order by) (desc)
+20-1. 데이터 [오름차순] 정렬
+	select 컬럼이름
+	from 테이블이름
+	order by 컬럼이름;  
+20-2. 데이터 [내림차순] 정렬
+	select 컬럼이름
+	from 테이블이름
+	order by 컬럼이름desc;  
+
+21. 논리연산자
+between : 숫자에 대한 범위일 때,  두 값의 사이라면
+and : 동시만족. 모두 true일 때 true값 반환
+or   : 혹은, 범위가 겹치지 않는다. 하나라도 true일 때 true값 반환
+in( ) : or 연산자와 기능은 같다. 괄호안에 여러개를 나열할 수 있다.
+not : 결과가 true면 false값 반환, 결과가 false이면 true값 반환
+
+15. 숫자함수
+	round( ) : 반올림  round (컬럼이름, 자릿수)
+	trunc( ) : 버림      trunc (컬럼이름, 자릿수)
+	mod( )   : 나머지 mod (컬럼이름, 나눌값)
+	ceil( )  : 올림
+	floor( ) : 내림
+
+15-1. 그룹함수 -  group by 함수와 함께 쓰기도 한다.
+	sum(컬럼이름)
+	avg(컬럼이름)
+	count(컬럼이름) : 특정컬럼에 대하여 갯수를 센다.
+	max(컬럼이름)
+	min(컬럼이름)
+
+16. 날짜함수
+	sysdate
+	timestamp
+	next_day( )  : 다음 요일. next_day (기준날짜, '*요일') 
+	months_between( ) : 개월수 구하기. months_between (날짜1, 날짜2) 
+
+17. 문자
+17-1. 대소문자 변환 함수
+	upper( )
+	lower( )
+	initcap( )
+17-2. 문자 조작 함수
+	concat( )  : 문자 합병
+	substr( )  : 특정위치에 있는 문자가 무엇인지 알고싶다.
+		substr (컬럼이름, 시작위치, 뽑을자릿수)
+	instr( )   : 문자의 위치값 반환
+	pad( )    : 
+	lpad( )   : lpad (컬럼이름, 자릿수, '치환')
+	rpad( )   : rpad (컬럼이름, 자릿수, '치환')
+	trim( )    : 공백문자를 지워준다.  trim (컬럼이름)
+	ltrim( )   : 
+	rtrim( )   : 
+17-3. 기타
+	|| : 문자열로써 데이터들을 붙일 때 사용
+	like '%' : 특정문자를 포함한 경우를 찾고싶다.
+		맨 앞이 A  : A%
+		맨 뒤가 A  : %A
+		아무데나 A : %A%
+	like '_' : 특정자리에 특정문자가 있는 경우를 찾고싶다. ( _ : 한자리)
+
+18. 형변환함수 - 문자, 숫자, 날자
+	to_char( )      : to_char(컬럼이름, '포멧형식')
+	to_date( )      : 
+	to_number( )  : 
+
+19. 조건함수
+19-1. decode 함수
+	select decode (컬럼이름, 데이터1, 부여할 값1, 
+			        데이터2, 부여할 값2, 
+			        데이터3, 부여할 값3, 
+			        그 외 모든 데이터에 부여할 값) 별칭
+	from employee;
+19-2. case when then
+	select case when 조건1 then 결과1
+		   when 조건2 then 결과2
+		   when 조건3 then 결과3
+		   end 별칭
+	from 테이블이름;
+
+----------------------------------------------------------------------------
+SQL 언어
+----------------------------------------------------------------------------
+1. DQL (Data Query Language) : 읽기만 한다. 
+select
+
+2. DML (Data Manipulation Language) : 데이터를 저장, 수정, 삭제, 합병(앞세개) 
+insert 
+update 
+delete 
+merge 
+
+3. TCL (Transaction Control Language) 
+commit 
+rollback 
+savepoint 
+
+4. DDL (Data Definition Language) 
+alter 
+creat 
+drop 
+rename 
+truncate (shortly) 
+comment 
+
+5. DCL (Data Control Language)  : 권한부여, 권한회수 (최상위 계정에서 하위 계정에게)
+grant 
+revoke
+
+----------------------------------------------------------------------------
+SQL 제약조건
+----------------------------------------------------------------------------
+1. not null
+2. unique
+3. primary key
+	primary key의 특징 : 
+	1. index가 만들어져있다. (검색용)
+	2. not null이다. null값을 가질 수 없다.
+	3. unique하다. 중복 데이터 입력이 불가능하다.
+4. foreign key
+5. check
+
+
+----------------------------------------------------------------------------
+온라인 시험
+----------------------------------------------------------------------------
+http://kosmo.atosoft.org/
+아이디 : 이름
+비밀번호 : 핸드폰 번호 뒷4자리

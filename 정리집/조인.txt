@@ -1,0 +1,31 @@
+SQL 조인방식과 미국표준 join 기법 ANSI-SQL JOIN 
+
+미국표준 join 기법 : ANSI-SQL JOIN 
+ANSI(american national standards in) 
+
+기법1. natural join (equi join과 비슷하나 제한적) - from 절에서 자연스럽게 너가 알아서 연결해라 
+기법2. join using (equi join)  *추천 
+기법3. join on (equi join)  *추천 
+기법4. outer join (join on 의 활용) - left, right 
+기법5. full outer join 
+기법6. cross join 
+
+1. natural join 
+: equi join과 비슷하나 완전 같지 않음 
+양쪽테이블의 동일한 이름의 모든 컬럼을 기준으로 자동으로 조인해준다.  
+
+natural join 의 한계 : 같은 컬럼이 여러개일때 발생. 내가 원하는 정보를 얻지 못 할 수 있다. 
+해결방법 : 언제 써야하는가 = 동일한 이름의 컬럼이 각 테이블에 하나일 때 
+
+2. join using 
+※주의 : using절에 사용된 기준컬럼 앞에는 <select 절에서도> 별칭을 쓰면 안된다. 
+
+3.  join on  --공통컬럼 앞에도 별칭필요. on(~~) = on ~~. 괄호는 해도 되고 안 해도 된다. 
+
+4. join on 절의 outer join 
+-- left / right outer join 왼쪽테이블을 전부 보고 싶어요. 
+
+5. full outer join 
+-- full outer join : 양쪽테이블을 전부 보고 싶어요. 서로 없는것 보충해주세요. 
+
+6. cross join ('카티시안 곱'(구구단 같은것)을 발생하게 하는 국제표준법) 
